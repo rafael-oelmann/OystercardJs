@@ -6,4 +6,12 @@ describe("oystercard", () => {
     testOystercard.topUp(10);
     expect(testOystercard.showBalance()).toEqual(10);
   });
+
+  test("user cannot exceed 50 limit", () => {
+    const testOystercard = new Oystercard();
+    for (let step = 0; step < 5; step++) {
+      testOystercard.topUp(10);
+    }
+    expect(() => testOystercard.topUp(10)).toThrow("Cannot exceed £50 limit");
+  });
 });
