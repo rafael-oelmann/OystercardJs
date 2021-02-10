@@ -13,6 +13,10 @@ class Oystercard {
       throw "Cannot exceed £50 limit";
     } else this.balance += amount;
   }
+
+  deductBalance(fare) {
+    this.balance -= fare;
+  }
 }
 
 module.exports = Oystercard;
