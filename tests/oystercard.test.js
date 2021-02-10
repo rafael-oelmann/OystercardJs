@@ -14,4 +14,11 @@ describe("oystercard", () => {
     }
     expect(() => testOystercard.topUp(10)).toThrow("Cannot exceed £50 limit");
   });
+
+  test("travel fare will deduct from balance", () => {
+    const testOystercard = new Oystercard();
+    testOystercard.topUp(10);
+    testOystercard.deductBalance(5);
+    expect(testOystercard.showBalance()).toEqual(5);
+  });
 });
