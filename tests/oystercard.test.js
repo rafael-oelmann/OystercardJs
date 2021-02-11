@@ -22,10 +22,18 @@ describe("oystercard", () => {
     expect(testOystercard.showBalance()).toEqual(5);
   });
 
-  test("touching in() starts journey", () => {
+  test("touching in starts journey", () => {
     const testOystercard = new Oystercard();
     testOystercard.topUp(10);
     testOystercard.touchIn();
     expect(testOystercard.inJourney).toBe(true);
+  });
+
+  test("touching out starts journey", () => {
+    const testOystercard = new Oystercard();
+    testOystercard.topUp(10);
+    testOystercard.touchIn();
+    testOystercard.touchOut();
+    expect(testOystercard.inJourney).toBe(false);
   });
 });

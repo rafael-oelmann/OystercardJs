@@ -2,6 +2,7 @@ class Oystercard {
   constructor() {
     this.balance = 0;
     this.cardLimit = 50;
+    this.inJourney = false;
   }
 
   showBalance() {
@@ -16,6 +17,14 @@ class Oystercard {
 
   deductBalance(fare) {
     this.balance -= fare;
+  }
+
+  touchIn() {
+    this.inJourney = true;
+  }
+
+  touchOut() {
+    this.inJourney = false;
   }
 }
 
