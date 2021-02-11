@@ -21,4 +21,11 @@ describe("oystercard", () => {
     testOystercard.deductBalance(5);
     expect(testOystercard.showBalance()).toEqual(5);
   });
+
+  test("touching in() starts journey", () => {
+    const testOystercard = new Oystercard();
+    testOystercard.topUp(10);
+    testOystercard.touchIn();
+    expect(testOystercard.inJourney).toBe(true);
+  });
 });
