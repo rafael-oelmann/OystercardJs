@@ -24,21 +24,25 @@ describe("oystercard", () => {
   });
 
   test("touching in starts journey", () => {
+    const walthamstow = new Station("walthamstow", 3);
     const testOystercard = new Oystercard();
     testOystercard.topUp(10);
-    testOystercard.touchIn();
+    testOystercard.touchIn(walthamstow);
     expect(testOystercard.inJourney).toBe(true);
   });
 
-  test("touching out starts journey", () => {
+  test("touching out ends journey", () => {
+    const walthamstow = new Station("walthamstow", 3);
+    const victoria = new Station("victoria", 1);
     const testOystercard = new Oystercard();
     testOystercard.topUp(10);
-    testOystercard.touchIn();
-    testOystercard.touchOut();
+    testOystercard.touchIn(walthamstow);
+    testOystercard.touchOut(victoria);
     expect(testOystercard.inJourney).toBe(false);
   });
 
   test("showHistory returns travel history", () => {
+    // would like to use mocking here
     const testOystercard = new Oystercard();
     const walthamstow = new Station("walthamstow", 3);
     const victoria = new Station("victoria", 1);
@@ -46,12 +50,7 @@ describe("oystercard", () => {
     testOystercard.topUp(10);
     testOystercard.touchIn(walthamstow);
     testOystercard.touchOut(victoria);
-    expect(
-      testOystercard
-        .showHiistory()
-        .toEqual(
-          "touch in @ walthamstow - zone 3, touch out @ victoria - zone 1"
-        )
-    );
+    // decided to test state here as I found it tricky to test console.log
+    expect(testOystercard.history[0]).toBe("touched in @ walthamstow - zone 3");
   });
 });
