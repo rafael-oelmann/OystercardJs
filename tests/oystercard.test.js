@@ -52,5 +52,6 @@ describe("oystercard", () => {
     testOystercard.touchOut(victoria);
     // decided to test state here as I found it tricky to test console.log
     expect(testOystercard.history[0]).toBe("touched in @ walthamstow - zone 3");
+    expect(testOystercard.history[1]).toBe("touched out @ victoria - zone 1");
   });
 });
