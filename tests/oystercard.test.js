@@ -1,4 +1,5 @@
 const Oystercard = require("../src/oystercard");
+const Station = require("../src/station");
 
 describe("oystercard", () => {
   test("user can put and store money on the card", () => {
@@ -35,5 +36,22 @@ describe("oystercard", () => {
     testOystercard.touchIn();
     testOystercard.touchOut();
     expect(testOystercard.inJourney).toBe(false);
+  });
+
+  test("showHistory returns travel history", () => {
+    const testOystercard = new Oystercard();
+    const walthamstow = new Station("walthamstow", 3);
+    const victoria = new Station("victoria", 1);
+
+    testOystercard.topUp(10);
+    testOystercard.touchIn(walthamstow);
+    testOystercard.touchOut(victoria);
+    expect(
+      testOystercard
+        .showHiistory()
+        .toEqual(
+          "touch in @ walthamstow - zone 3, touch out @ victoria - zone 1"
+        )
+    );
   });
 });

@@ -4,3 +4,5 @@ class Station {
     this.zone = zone;
   }
 }
+
+module.exports = Station;
