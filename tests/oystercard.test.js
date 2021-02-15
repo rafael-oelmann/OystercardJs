@@ -54,4 +54,11 @@ describe("oystercard", () => {
     expect(testOystercard.history[0]).toBe("touched in @ walthamstow - zone 3");
     expect(testOystercard.history[1]).toBe("touched out @ victoria - zone 1");
   });
+
+  test("penalty charge deducted if user fails to touch in", () => {
+    const testOystercard = new Oystercard();
+    const walthamstow = new Station("walthamstow", 3);
+    testOystercard.touchOut(walthamstow);
+    expect(testOystercard.showBalance()).toBe(-8);
+  });
 });
