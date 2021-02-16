@@ -69,4 +69,15 @@ describe("oystercard", () => {
       "Not enough balance, please top up"
     );
   });
+
+  test("the correct fare is calculated", () => {
+    const testOystercard = new Oystercard();
+    const walthamstow = new Station("walthamstow", 3);
+    const victoria = new Station("victoria", 1);
+    testOystercard.topUp(10);
+    testOystercard.touchIn(walthamstow);
+    expect(testOystercard.showBalance()).toBe(8);
+    testOystercard.touchOut(victoria);
+    expect(testOystercard.showBalance()).toBe(4);
+  });
 });
