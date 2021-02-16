@@ -61,4 +61,12 @@ describe("oystercard", () => {
     testOystercard.touchOut(walthamstow);
     expect(testOystercard.showBalance()).toBe(-8);
   });
+
+  test("cant touch in without with balance < min fare", () => {
+    const testOystercard = new Oystercard();
+    const walthamstow = new Station("walthamstow", 3);
+    expect(() => testOystercard.touchIn(walthamstow)).toThrow(
+      "Not enough balance, please top up"
+    );
+  });
 });
