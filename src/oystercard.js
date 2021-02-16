@@ -6,6 +6,8 @@ class Oystercard {
     this.cardLimit = 50;
     this.inJourney = false;
     this.history = [];
+    this.minFare = 2;
+    this.penFare = 8;
   }
 
   showBalance() {
@@ -23,17 +25,25 @@ class Oystercard {
   }
 
   touchIn(station) {
-    this.inJourney = true;
-    this.history.push(
-      "touched in @ " + station.name + " - zone " + station.zone
-    );
+    if (this.minFare > this.balance) {
+      throw "Not enough balance, please top up";
+    } else {
+      this.inJourney = true;
+      this.history.push(
+        "touched in @ " + station.name + " - zone " + station.zone
+      );
+    }
   }
 
   touchOut(station) {
-    this.inJourney = false;
-    this.history.push(
-      "touched out @ " + station.name + " - zone " + station.zone
-    );
+    if (this.inJourney == false) {
+      this.balance -= this.penFare;
+    } else {
+      this.inJourney = false;
+      this.history.push(
+        "touched out @ " + station.name + " - zone " + station.zone
+      );
+    }
   }
 
   showHistory() {
