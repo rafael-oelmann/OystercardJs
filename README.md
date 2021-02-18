@@ -63,6 +63,10 @@ In order to know where we have been, we use the showHistory method on our Oyster
 
 Feel free to experiment with the program, try touching in without any balance or see what happens when you only touch out!
 
+## Class Diagram (Oystercard & Station)
+
+![image of a class diagram.](/images/classDiagram.png "image of a class diagram.")
+
 ## Users Stories
 
 The following users stories were used to guide the development of the program.
