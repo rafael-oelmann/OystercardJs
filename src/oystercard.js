@@ -21,10 +21,6 @@ class Oystercard {
     } else this.balance += amount;
   }
 
-  deductBalance(fare) {
-    this.balance -= fare;
-  }
-
   touchIn(station) {
     if (this.minFare > this.balance) {
       throw "Not enough balance, please top up";
